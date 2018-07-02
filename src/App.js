@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import RecipeInfo from './components/RecipeInfo';
 import RecipeIngredients from './components/RecipeIngredients';
+import { Grid, GridCell } from 'rmwc/Grid';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      recipe: {
+        title: ''
+      },
       ingredients: [
         {
           name: 'Ingredient 1',
@@ -25,11 +29,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <RecipeInfo />
-        <RecipeIngredients
-          ingredients={this.state.ingredients}
-          onIngredientInput={this.handleIngredientInput}
-        />
+        <Grid>
+          <GridCell span="6">
+            <RecipeInfo title={this.state.recipe.title} />
+          </GridCell>
+          <GridCell span="6">
+            <RecipeIngredients
+              ingredients={this.state.ingredients}
+              onIngredientInput={this.handleIngredientInput}
+            />
+          </GridCell>
+        </Grid>
       </div>
     );
   }
