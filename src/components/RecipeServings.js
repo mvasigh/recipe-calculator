@@ -1,10 +1,11 @@
 import React from 'react';
+import { TextField } from 'rmwc/TextField';
+import './RecipeServings.css';
 
-const RecipeServings = () => {
+const RecipeServings = ({ servings }) => {
   return (
-    <div className="recipe-servings">
-      <input type="text" className="recipe-servings__input" />
-      <span>servings</span>
+    <div className="RecipeServings">
+      <TextField label="Serves:" value={servings} />
     </div>
   );
 };
