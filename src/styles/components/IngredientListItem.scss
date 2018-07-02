@@ -1,0 +1,22 @@
+.IngredientListItem {
+  display: block;
+
+  &__body {
+  }
+
+  &__meta {
+    float: right;
+    position: relative;
+    top: 0.8rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: all 0.2s;
+
+    &:hover {
+      color: #6200ee;
+    }
+  }
+}
