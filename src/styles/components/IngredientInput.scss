@@ -1,0 +1,17 @@
+.IngredientInput {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  &__heading {
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
