@@ -1,0 +1,9 @@
+.IngredientInputField {
+  margin: 0;
+  max-width: 10rem;
+  &--fullWidth {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block;
+  }
+}
