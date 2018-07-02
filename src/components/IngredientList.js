@@ -1,13 +1,14 @@
 import React from 'react';
-import Ingredient from './Ingredient';
+import IngredientListItem from './IngredientListItem';
+import { List } from 'rmwc/List';
 
 const IngredientList = ({ ingredients }) => {
   return (
-    <ul className="ingredient-list">
+    <List className="ingredient-list">
       {ingredients.map((ingredient, i) => (
-        <Ingredient {...ingredient} key={i} />
+        <IngredientListItem {...ingredient} key={i} />
       ))}
-    </ul>
+    </List>
   );
 };
 
