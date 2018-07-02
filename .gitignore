@@ -22,3 +22,7 @@ yarn-error.log*
 
 # keys
 /config/keys.js
+
+# compiled css
+/src/*.css
+/src/components/*.css
