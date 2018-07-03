@@ -1,26 +1,19 @@
 import React from 'react';
-import {
-  ListItem,
-  ListItemText,
-  ListItemSecondaryText,
-  ListItemMeta
-} from 'rmwc/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 import './IngredientListItem.css';
 
 const IngredientListItem = ({ name, quantity, unit }) => {
   return (
-    <ListItem className="IngredientListItem">
-      <ListItemMeta
-        className="IngredientListItem__meta"
-        onClick={() => console.log('hello world')}
-      >
-        cancel
-      </ListItemMeta>
-
-      <div className="IngredientListItem__body">
-        <ListItemText className="IngredientListItem__text">{name}</ListItemText>
-        <ListItemSecondaryText>{`${quantity} ${unit}`}</ListItemSecondaryText>
-      </div>
+    <ListItem button className="IngredientListItem">
+      <ListItemText primary={name} secondary={`${quantity} ${unit}`}>
+        {name}
+      </ListItemText>
+      <IconButton aria-label="delete">
+        <DeleteIcon />
+      </IconButton>
     </ListItem>
   );
 };

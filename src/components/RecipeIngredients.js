@@ -1,8 +1,7 @@
 import React from 'react';
 import IngredientInput from './IngredientInput';
 import IngredientList from './IngredientList';
-import { Card, CardPrimaryAction } from 'rmwc/Card';
-import { ListDivider } from 'rmwc/List';
+import Card from '@material-ui/core/Card';
 import './RecipeIngredients.css';
 
 const RecipeIngredients = ({
@@ -10,13 +9,8 @@ const RecipeIngredients = ({
   onIngredientInput = f => f
 }) => {
   return (
-    <Card outlined className="RecipeIngredients">
-      <CardPrimaryAction style={{ padding: '0rem 1rem' }}>
-        <h4>Ingredients</h4>
-      </CardPrimaryAction>
-      <ListDivider />
+    <Card className="RecipeIngredients">
       <IngredientInput onIngredientInput={onIngredientInput} />
-      <ListDivider />
       <IngredientList ingredients={ingredients} />
     </Card>
   );

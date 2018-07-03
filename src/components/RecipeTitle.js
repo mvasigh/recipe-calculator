@@ -1,36 +1,33 @@
 import React, { Component } from 'react';
-import TextField, { HelperText, Input } from '@material/react-text-field';
+import TextField from '@material-ui/core/TextField';
 import './RecipeTitle.css';
 
 class RecipeTitle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.title || '',
+      title: props.title || '',
       fullWidth: props.fullWidth || false
     };
   }
+
+  handleChange = key => e => {
+    this.setState({
+      key: e.target.value
+    });
+  };
 
   render() {
     return (
       <div className="RecipeTitle">
         <TextField
-          className={`mdc-text-field RecipeTitle__field ${
-            this.state.fullWidth ? 'RecipeTitle--fullwidth' : ''
-          }`}
-          label=""
-        >
-          <Input
-            className="RecipeTitle__input"
-            placeholder="Recipe title..."
-            value={this.state.value}
-            onChange={e =>
-              this.setState({
-                value: e.target.value
-              })
-            }
-          />
-        </TextField>
+          id="name"
+          label="Recipe title..."
+          value={this.state.title}
+          onChange={this.handleChange('title')}
+          margin="normal"
+          fullWidth
+        />
       </div>
     );
   }
