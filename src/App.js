@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RecipeInfo from './components/RecipeInfo';
 import RecipeIngredients from './components/RecipeIngredients';
-import { Grid, GridCell } from 'rmwc/Grid';
+import Grid from '@material-ui/core/Grid';
 import './App.css';
 
 class App extends Component {
@@ -29,16 +29,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Grid>
-          <GridCell span="6">
+        <Grid container spacing={16}>
+          <Grid item xs={12} sm={6}>
             <RecipeInfo title={this.state.recipe.title} />
-          </GridCell>
-          <GridCell span="6">
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <RecipeIngredients
               ingredients={this.state.ingredients}
               onIngredientInput={this.handleIngredientInput}
             />
-          </GridCell>
+          </Grid>
         </Grid>
       </div>
     );
