@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import IngredientInputField from './IngredientInputField';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { addIngredient } from '../actions/addIngredient';
+
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -14,15 +17,27 @@ import './IngredientInput.css';
 class IngredientInput extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: '',
+      quantity: '',
+      unit: ''
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('hello world');
+    this.props.addIngredient(this.state);
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
+    const { name, quantity, unit } = this.state;
+
     return (
       <form className="IngredientInput" onSubmit={this.handleSubmit}>
         <Grid container alignItems="baseline" spacing={24}>
@@ -30,26 +45,35 @@ class IngredientInput extends Component {
             <Typography variant="subheading">Add ingredient:</Typography>
           </Grid>
           <Grid item xs={12}>
-            <TextField fullWidth placeholder="Ingredient name" />
+            <TextField
+              name="name"
+              fullWidth
+              placeholder="Ingredient name"
+              value={name}
+              onChange={this.handleChange}
+            />
           </Grid>
           <Grid item xs={3}>
-            <TextField fullWidth placeholder="Quantity" />
+            <TextField
+              name="quantity"
+              type="number"
+              min={0}
+              fullWidth
+              placeholder="Quantity"
+              value={quantity}
+              onChange={this.handleChange}
+            />
           </Grid>
           <Grid item xs={3}>
             <FormControl>
               <InputLabel>Unit</InputLabel>
-              <Select
-                inputProps={{
-                  name: 'age',
-                  id: 'age-simple'
-                }}
-              >
+              <Select name="unit" value={unit} onChange={this.handleChange}>
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value="cups">cups</MenuItem>
+                <MenuItem value="servings">Servings</MenuItem>
+                <MenuItem value="g">grams</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -65,48 +89,10 @@ class IngredientInput extends Component {
   }
 }
 
-// const IngredientInput = ({ onIngredientInput = f => f }) => {
-//   let _name, _quantity, _unit;
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     const ingredient = {
-//       name: _name.value,
-//       quantity: _quantity.value,
-//       unit: _unit.value
-//     };
-//     onIngredientInput(ingredient);
-//   };
-//   return (
-//     <form className="IngredientInput" onSubmit={handleSubmit}>
-//       <Typography className="IngredientInput__heading" use="subtitle2">
-//         Add ingredient:
-//       </Typography>
-//       <IngredientInputField
-//         ref={input => (_name = input)}
-//         label="Ingredient"
-//         type="text"
-//         fullWidth
-//       />
-//       <div className="IngredientInput__row">
-//         <IngredientInputField
-//           ref={input => (_quantity = input)}
-//           label="Quantity"
-//           type="text"
-//         />
-//         <Select
-//           box
-//           label="Unit"
-//           ref={select => (_unit = select)}
-//           options={['one', 'two', 'three']}
-//         />
-//         <Button>Add</Button>
-//       </div>
-//       {/* <select ref={select => (_unit = select)}>
-//         <option>Option 1</option>
-//         <option>Option 2</option>
-//       </select> */}
-//     </form>
-//   );
-// };
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ addIngredient }, dispatch);
 
-export default IngredientInput;
+export default connect(
+  null,
+  mapDispatchToProps
+)(IngredientInput);
