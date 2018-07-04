@@ -34,10 +34,7 @@ class App extends Component {
             <RecipeInfo title={this.state.recipe.title} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <RecipeIngredients
-              ingredients={this.state.ingredients}
-              onIngredientInput={this.handleIngredientInput}
-            />
+            <RecipeIngredients onIngredientInput={this.handleIngredientInput} />
           </Grid>
         </Grid>
       </div>
