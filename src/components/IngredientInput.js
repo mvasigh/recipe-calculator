@@ -55,7 +55,7 @@ class IngredientInput extends Component {
           </Grid>
           <Grid item xs={3} />
           <Grid item xs={3}>
-            <Button type="submit" variant="contained">
+            <Button type="submit" color="primary" variant="contained">
               Add
             </Button>
           </Grid>
