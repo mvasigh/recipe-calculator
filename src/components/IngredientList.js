@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import IngredientListItem from './IngredientListItem';
 import { List } from 'rmwc/List';
 
-const IngredientList = ({ ingredients }) => {
-  return (
-    <List className="ingredient-list">
-      {ingredients.map((ingredient, i) => (
-        <IngredientListItem {...ingredient} key={i} />
-      ))}
-    </List>
-  );
-};
+class IngredientList extends Component {
+  render() {
+    console.log(this.props.ingredients);
+    return (
+      <List className="ingredient-list">
+        {this.props.ingredients.map((ingredient, i) => (
+          <IngredientListItem {...ingredient} key={i} />
+        ))}
+      </List>
+    );
+  }
+}
 
-export default IngredientList;
+const mapStateToProps = ({ ingredients }) => ({ ingredients });
+
+export default connect(mapStateToProps)(IngredientList);
