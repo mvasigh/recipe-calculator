@@ -11,8 +11,6 @@ import Grid from '@material-ui/core/Grid';
 
 import './IngredientInput.css';
 
-// consider turning into a stateful component to make updating 'select' tag options with units from API easier
-
 class IngredientInput extends Component {
   constructor(props) {
     super(props);
@@ -21,11 +19,12 @@ class IngredientInput extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log('hello world');
   }
 
   render() {
     return (
-      <div className="IngredientInput">
+      <form className="IngredientInput" onSubmit={this.handleSubmit}>
         <Grid container alignItems="baseline" spacing={24}>
           <Grid item xs={12}>
             <Typography variant="subheading">Add ingredient:</Typography>
@@ -56,10 +55,12 @@ class IngredientInput extends Component {
           </Grid>
           <Grid item xs={3} />
           <Grid item xs={3}>
-            <Button variant="outlined">Add</Button>
+            <Button type="submit" variant="contained">
+              Add
+            </Button>
           </Grid>
         </Grid>
-      </div>
+      </form>
     );
   }
 }
