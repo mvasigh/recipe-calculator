@@ -2,6 +2,7 @@ import React from 'react';
 import IngredientInput from './IngredientInput';
 import IngredientList from './IngredientList';
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import './RecipeIngredients.css';
 
 const RecipeIngredients = ({
@@ -10,8 +11,10 @@ const RecipeIngredients = ({
 }) => {
   return (
     <Card className="RecipeIngredients">
-      <IngredientInput onIngredientInput={onIngredientInput} />
-      <IngredientList ingredients={ingredients} />
+      <CardContent>
+        <IngredientInput onIngredientInput={onIngredientInput} />
+        <IngredientList ingredients={ingredients} />
+    </CardContent>
     </Card>
   );
 };
