@@ -1,7 +1,7 @@
 import React from 'react';
 import RecipeTitle from './RecipeTitle';
-import RecipeServings from './RecipeServings';
-import RecipeNutrients from './RecipeNutrients';
+import NutritionChart from './NutritionChart';
+import NutritionFacts from './NutritionFacts';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -15,7 +15,10 @@ const RecipeInfo = () => {
         <Typography variant="title">Recipe Calculator</Typography>
         <RecipeTitle fullWidth />
         <TextField label="Serves:" />
-        <RecipeNutrients />
+      </CardContent>
+      <NutritionChart />
+      <CardContent>
+        <NutritionFacts />
       </CardContent>
     </Card>
   );
