@@ -33,7 +33,7 @@ class IngredientInput extends Component {
     this.fetchFoodSuggestions = this.fetchFoodSuggestions.bind(this);
     this.fetchFoodSuggestionsThrottled = _.debounce(
       this.fetchFoodSuggestions,
-      200
+      300
     );
   }
 
@@ -50,9 +50,10 @@ class IngredientInput extends Component {
   }
 
   fetchFoodSuggestions() {
-    const url = API_URL + '&q=' + this.state.name;
+    const url = API_URL + '&q=' + encodeURIComponent(this.state.name);
     axios.get(url).then(response => {
       if (response.data.list.item != undefined) {
+        console.log(response.data.list.item);
         this.setState({ suggestions: response.data.list.item });
       }
     });
