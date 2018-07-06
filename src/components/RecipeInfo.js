@@ -1,27 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import RecipeTitle from './RecipeTitle';
 import NutritionChart from './NutritionChart';
 import NutritionFacts from './NutritionFacts';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardContent, Typography, TextField } from '@material-ui/core';
 import './RecipeInfo.css';
-import { TextField } from '@material-ui/core';
 
-const RecipeInfo = () => {
-  return (
-    <Card className="RecipeInfo">
-      <CardContent>
-        <Typography variant="title">Recipe Calculator</Typography>
-        <RecipeTitle fullWidth />
-        <TextField label="Serves:" />
-      </CardContent>
-      <NutritionChart />
-      <CardContent>
+class RecipeInfo extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <Card className="RecipeInfo">
+          <CardContent>
+            <Typography variant="title">Recipe Calculator</Typography>
+            <RecipeTitle fullWidth />
+            <TextField label="Serves:" />
+          </CardContent>
+        </Card>
+        <NutritionChart />
         <NutritionFacts />
-      </CardContent>
-    </Card>
-  );
-};
+      </div>
+    );
+  }
+}
 
 export default RecipeInfo;
