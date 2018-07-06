@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addIngredient } from '../actions/addIngredient';
+import axios from 'axios';
+import _ from 'lodash';
 
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -14,16 +16,25 @@ import Grid from '@material-ui/core/Grid';
 
 import './IngredientInput.css';
 
+const API_KEY = 'lk6yLvVz69xE4NB616AtuEOz5t8DrVo9yX48AgWP';
+const API_URL = `https://api.nal.usda.gov/ndb/search/?format=json&sort=n&max=25&api_key=${API_KEY}`;
+
 class IngredientInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
       quantity: '',
-      unit: ''
+      unit: '',
+      suggestions: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.fetchFoodSuggestions = this.fetchFoodSuggestions.bind(this);
+    this.fetchFoodSuggestionsThrottled = _.debounce(
+      this.fetchFoodSuggestions,
+      200
+    );
   }
 
   handleSubmit(e) {
@@ -33,6 +44,18 @@ class IngredientInput extends Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name === 'name') {
+      this.fetchFoodSuggestionsThrottled();
+    }
+  }
+
+  fetchFoodSuggestions() {
+    const url = API_URL + '&q=' + this.state.name;
+    axios.get(url).then(response => {
+      if (response.data.list.item != undefined) {
+        this.setState({ suggestions: response.data.list.item });
+      }
+    });
   }
 
   render() {
