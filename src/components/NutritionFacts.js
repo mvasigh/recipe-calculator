@@ -6,23 +6,38 @@ import {
   TableCell,
   TableRow,
   Typography,
-  Divider
+  Divider,
+  Paper
 } from '@material-ui/core';
 
 class NutritionFacts extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <Typography variant="title">
-            <strong>Nutrition Facts</strong>
-          </Typography>
-          <Typography variant="subtitle">8 servings per container</Typography>
+      <Paper>
+        <Grid container spacing={16}>
+          <Grid item xs={12}>
+            <Typography variant="title">
+              <strong>Nutrition Facts</strong>
+            </Typography>
+            <Typography variant="subheading">8 total servings</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Divider />
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="subheading">
+              <strong>Calories</strong> 200
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Divider />
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Divider />
-        </Grid>
-      </Grid>
+      </Paper>
     );
   }
 }
